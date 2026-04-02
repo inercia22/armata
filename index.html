@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<button onclick="getLocation()">Share Location</button>
+
+<script>
+function getLocation() {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    
+    fetch("YOUR_WEBHOOK_URL", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      })
+    });
+
+    alert("Location sent!");
+  });
+}
+</script>
+</body>
+</html>
